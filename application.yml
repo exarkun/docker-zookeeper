@@ -3,11 +3,11 @@
     "server-1":
         "image": "exarkun/zookeeper:3.5.0-alpha"
         "ports":
-        - "internal": 50001
+        - "internal": 2181
           "external": 50001
-        - "internal": 51001
+        - "internal": 2888
           "external": 51001
-        - "internal": 52001
+        - "internal": 3888
           "external": 52001
         "volume":
           "mountpoint": "/var/run/zookeeper"
