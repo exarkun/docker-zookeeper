@@ -1,0 +1,43 @@
+"version": 1
+"applications":
+    "server-1":
+        "image": "exarkun/zookeeper:3.5.0-alpha"
+        "ports":
+        - "internal": 50001
+          "external": 50001
+        - "internal": 51001
+          "external": 51001
+        - "internal": 52001
+          "external": 52001
+        "volume":
+          "mountpoint": "/var/run/zookeeper"
+        "environment":
+          "ZOO_NODE_NUM": "1"
+
+    "server-2":
+        "image": "exarkun/zookeeper:3.5.0-alpha"
+        "ports":
+        - "internal": 50002
+          "external": 50002
+        - "internal": 51002
+          "external": 51002
+        - "internal": 52002
+          "external": 52002
+        "volume":
+          "mountpoint": "/var/run/zookeeper"
+        "environment":
+          "ZOO_NODE_NUM": "2"
+
+    "server-1":
+        "image": "exarkun/zookeeper:3.5.0-alpha"
+        "ports":
+        - "internal": 50003
+          "external": 50003
+        - "internal": 51003
+          "external": 51003
+        - "internal": 52003
+          "external": 52003
+        "volume":
+          "mountpoint": "/var/run/zookeeper"
+        "environment":
+          "ZOO_NODE_NUM": "3"
