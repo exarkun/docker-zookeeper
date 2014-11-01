@@ -3,41 +3,119 @@
     "server-1":
         "image": "exarkun/zookeeper:3.5.0-alpha"
         "ports":
-        - "internal": 50001
+        - "internal": 2181
           "external": 50001
-        - "internal": 51001
+        - "internal": 2888
           "external": 51001
-        - "internal": 52001
+        - "internal": 3888
           "external": 52001
+        "links":
+        # Link server-1 to ... server-1
+        - "local_port": 2888
+          "remote_port": 51001
+          "alias": "SERVER_1_VOTE"
+        - "local_port": 3888
+          "remote_port": 52001
+          "alias": "SERVER_1_ELECT"
+
+        # Link server-1 to server-2
+        - "local_port": 2888
+          "remote_port": 51002
+          "alias": "SERVER_2_VOTE"
+        - "local_port": 3888
+          "remote_port": 52002
+          "alias": "SERVER_2_ELECT"
+
+        # Link server-1 to server-3
+        - "local_port": 2888
+          "remote_port": 51003
+          "alias": "SERVER_3_VOTE"
+        - "local_port": 3888
+          "remote_port": 52003
+          "alias": "SERVER_3_ELECT"
+
         "volume":
           "mountpoint": "/var/run/zookeeper"
         "environment":
-          "ZOO_NODE_NUM": "1"
+          "SERVER_ID": "1"
+          "SERVER_COUNT": "3"
 
     "server-2":
         "image": "exarkun/zookeeper:3.5.0-alpha"
         "ports":
-        - "internal": 50002
+        - "internal": 2181
           "external": 50002
-        - "internal": 51002
+        - "internal": 2888
           "external": 51002
-        - "internal": 52002
+        - "internal": 3888
           "external": 52002
+        "links":
+        # Link server-2 to server-1
+        - "local_port": 2888
+          "remote_port": 51001
+          "alias": "SERVER_1_VOTE"
+        - "local_port": 3888
+          "remote_port": 52001
+          "alias": "SERVER_1_ELECT"
+
+        # Link server-2 to ... server-2
+        - "local_port": 2888
+          "remote_port": 51002
+          "alias": "SERVER_2_VOTE"
+        - "local_port": 3888
+          "remote_port": 52002
+          "alias": "SERVER_2_ELECT"
+
+        # Link server-2 to server-3
+        - "local_port": 2888
+          "remote_port": 51003
+          "alias": "SERVER_3_VOTE"
+        - "local_port": 3888
+          "remote_port": 52003
+          "alias": "SERVER_3_ELECT"
+
         "volume":
           "mountpoint": "/var/run/zookeeper"
         "environment":
-          "ZOO_NODE_NUM": "2"
+          "SERVER_ID": "2"
+          "SERVER_COUNT": "3"
 
     "server-3":
         "image": "exarkun/zookeeper:3.5.0-alpha"
         "ports":
-        - "internal": 50003
+        - "internal": 2181
           "external": 50003
-        - "internal": 51003
+        - "internal": 2888
           "external": 51003
-        - "internal": 52003
+        - "internal": 3888
           "external": 52003
+        "links":
+        # Link server-3 to server-1
+        - "local_port": 2888
+          "remote_port": 51001
+          "alias": "SERVER_1_VOTE"
+        - "local_port": 3888
+          "remote_port": 52001
+          "alias": "SERVER_1_ELECT"
+
+        # Link server-3 to server-2
+        - "local_port": 2888
+          "remote_port": 51002
+          "alias": "SERVER_2_VOTE"
+        - "local_port": 3888
+          "remote_port": 52002
+          "alias": "SERVER_2_ELECT"
+
+        # Link server-3 to ... server-3
+        - "local_port": 2888
+          "remote_port": 51003
+          "alias": "SERVER_3_VOTE"
+        - "local_port": 3888
+          "remote_port": 52003
+          "alias": "SERVER_3_ELECT"
+
         "volume":
           "mountpoint": "/var/run/zookeeper"
         "environment":
-          "ZOO_NODE_NUM": "3"
+          "SERVER_ID": "3"
+          "SERVER_COUNT": "3"

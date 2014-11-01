@@ -2,7 +2,7 @@
 #
 # Version 3.5.0-alpha
 
-FROM ubuntu:trusty
+FROM exarkun/ubuntu:updated
 MAINTAINER Jean-Paul Calderone jean-paul@clusterhq.com
 
 ENV ZOOKEEPER_VERSION 3.5.0-alpha
@@ -35,6 +35,5 @@ RUN \
     apt-get remove -y --purge curl && \
     apt-get autoclean
 
-CMD \
-    echo "${ZOO_NODE_NUM}" > /var/run/zookeeper/myid && \
-    /srv/zookeeper/bin/zkServer.sh start-foreground /var/run/zookeeper/zoo.cfg
+ADD generate-config-and-start.sh /tmp/generate-config-and-start.sh
+CMD /tmp/generate-config-and-start.sh
