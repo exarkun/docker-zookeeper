@@ -2,7 +2,7 @@
 #
 # Version 3.5.0-alpha
 
-FROM exarkun/ubuntu:updated
+FROM exarkun/ubuntu:14.04
 MAINTAINER Jean-Paul Calderone jean-paul@clusterhq.com
 
 ENV ZOOKEEPER_VERSION 3.5.0-alpha
